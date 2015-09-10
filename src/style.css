@@ -1,0 +1,60 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+#new-message {
+  position: fixed;
+  height: 50px;
+  width: 100%;
+  padding: 2px 5px 4px;
+  bottom: 0;
+  background: white;
+  border-top: 1px solid #999;
+}
+
+#new-message input {
+  border: 0;
+  width: 100%;
+  outline: none;
+  font-size: 1.2em;
+}
+
+.message-list-wrapper {
+  overflow: auto;
+  height: 100%;
+  padding-bottom: 50px;
+}
+
+.message-list {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.message-list li {
+  position: relative;
+  padding: 1px 5px;
+}
+
+.message-username {
+  position: absolute;
+  width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.message-text {
+  width: 100%;
+  padding-left: 85px;
+}
+
+.own-message {
+  background-color: #ddd;
+}

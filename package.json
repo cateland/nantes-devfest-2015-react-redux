@@ -1,0 +1,47 @@
+{
+  "name": "nantes-devfest-2015-react-redux",
+  "version": "0.0.0",
+  "description": "React + Redux workshop",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --content-base dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cateland/nantes-devfest-2015-react-redux.git"
+  },
+  "keywords": [
+    "react",
+    "redux",
+    "workshop"
+  ],
+  "author": "Axel CATELAND",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cateland/nantes-devfest-2015-react-redux/issues"
+  },
+  "homepage": "https://github.com/cateland/nantes-devfest-2015-react-redux",
+  "devDependencies": {
+    "babel": "^5.8.21",
+    "babel-core": "^5.8.22",
+    "babel-loader": "^5.3.2",
+    "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6",
+    "css-loader": "^0.16.0",
+    "file-loader": "^0.8.4",
+    "webpack": "^1.11.0"
+  },
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "bootstrap-webpack": "0.0.3",
+    "firebase": "^2.2.9",
+    "imports-loader": "^0.6.4",
+    "jquery": "^2.1.4",
+    "react": "^0.13.3",
+    "react-redux": "^2.1.1",
+    "redux": "^2.0.0",
+    "redux-logger": "^1.0.6",
+    "redux-thunk": "^0.1.0"
+  }
+}

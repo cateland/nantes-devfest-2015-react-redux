@@ -15,4 +15,5 @@ Installez [git](http://git-scm.com/downloads) et [node.js](https://nodejs.org/),
 Ouvrez votre navigateur et rendez vous sur l'url : http://localhost:8080
 Vous devriez y voir un squelette de l'application.
 
+Et surtout le message "it work"
 [screenshot a venir]
