@@ -9,11 +9,11 @@ Installez [git](http://git-scm.com/downloads) et [node.js](https://nodejs.org/),
 
     $ git clone https://github.com/cateland/nantes-devfest-2015-react-redux.git`
     $ cd nantes-devfest-2015-react-redux
+    $ npm install -g webpack webpack-dev-server
     $ npm install
-    $ npm start
+    $ npm run start
 
 Ouvrez votre navigateur et rendez vous sur l'url : http://localhost:8080
 Vous devriez y voir un squelette de l'application.
 
 Et surtout le message "it work"
-[screenshot a venir]
