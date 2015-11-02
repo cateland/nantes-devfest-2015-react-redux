@@ -1,5 +1,5 @@
 var React = require('react');
-require('./style.css');
+var ReactDOM = require('react-dom')
 
 var App = React.createClass({
 	render: function(){
@@ -8,4 +8,4 @@ var App = React.createClass({
 		)
 	}
 });
-React.render(<App/>, document.getElementById('app'));
+ReactDOM.render(<App/>, document.getElementById('app'));

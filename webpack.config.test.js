@@ -1,15 +1,12 @@
 module.exports = {
-  entry: "./src/index.js",
+  entry: 'mocha!./test/index.js',
   output: {
     path: __dirname,
-    filename: "bundle.js"
+    filename: 'testBundle.js'
   },
-  resolve: ['','js','jsx'],
+  resolve: ['', 'js', 'jsx'],
   module: {
     loaders: [{
-      test: /\.css$/,
-      loader: "style!css"
-    }, {
       test: /\.js$/,
       loader: "babel",
       exclude: /node_modules/
@@ -18,4 +15,4 @@ module.exports = {
       loader: "babel"
     }]
   }
-};
+}
