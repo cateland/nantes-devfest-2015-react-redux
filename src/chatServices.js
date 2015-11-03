@@ -1,23 +1,27 @@
-var Firebase = require('firebase/lib/firebase-web');
+const Firebase = require('firebase/lib/firebase-web');
 
-var ref = new Firebase('https://supercat.firebaseio.com/');
+const ref = new Firebase('https://supercat.firebaseio.com/');
 
-var serverTimeOffset = 0;
+let timestamp = 0;
 
 ref.child('.info/serverTimeOffset').on('value', (snapshot) => {
-  serverTimeOffset = snapshot.val();
+  timestamp = Date.now() + snapshot.val();
 });
 
 
 /**
  * permet d'envoyer un message a firebase
  */
-export function sendMessage(author, content) {
-  ref.child('messages').push({
-    timestamp: Date.now() + serverTimeOffset,
-    author,
-    content
-  });
+export function sendMessage(message, callback) {
+  ref.child('messages').push(message, callback);
+}
+
+/** 
+ * permet de recevoir des messages un par un
+ */
+export function onReceiveMessage(callback){
+  const ref = new Firebase('https://supercat.firebaseio.com/messages');
+  ref.on('child_added', callback);  
 }
 
 /**
@@ -27,7 +31,7 @@ export function sendMessage(author, content) {
 export function receiveMessage(callback) {
 
   ref.child('messages').limitToLast(100).on('value', (snapshot) => {
-    var messages = [];
+    let messages = [];
 
     snapshot.forEach(function(s) {
       messages.push(s.val());
@@ -36,3 +40,5 @@ export function receiveMessage(callback) {
 
   });
 }
+
+export default timestamp;
