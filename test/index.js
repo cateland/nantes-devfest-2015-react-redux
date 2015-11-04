@@ -2,25 +2,27 @@ import chai, {expect} from 'chai';
 import {createStore, combineReducers, applyMiddleware, bindActionCreators} from 'redux';
 import thunk from 'redux-thunk'
 
-describe("Redux create store", () => {
+// test 1
+describe('Redux create store', () => {
 
-	it("Initialisation d'un store basique", () => {
+	it('Initialisation d\'un store basique', () => {
 
     	// utiliser createStore avec au moins un reducer
     	
     	expect(store).is.not.empty;
   	});
 
-  	it("Initialisation d'un store avec un etat initial", () => {
+  	it('Initialisation d\'un store avec un etat initial', () => {
   		// un état initial pue être un primitif, un tableau, un objet
     	expect(store.getState()).to.eql({valeur: 'valeur'});
   	});
 
 });
 
-describe("Redux dispatch", () => {
+// test 2
+describe('Redux dispatch', () => {
 
-	it("dispatch d'une action entrainant une modification de l'état", () => {	
+	it('dispatch d\'une action entrainant une modification de l\'état', () => {	
 
 
 		const store = createStore(reducer, {valeur: 'valeur initiale'});
@@ -32,8 +34,46 @@ describe("Redux dispatch", () => {
 	});
 });
 
-describe("Redux suscribe", () => {
-	it("on peut enregistrer un listener sur le store pour être notifier de ses mise a jour", done => {
+// test 3
+describe('tester un action creator', () => {
+	it('quand celui-ci contient de la logique', () =>{
+		const actionCreator =  (message) => {
+			if(message){
+				return {
+					type: 'ENVOYER_MESSAGE',
+					message
+				}
+			}
+			return {
+				type: 'MESSAGE_INVALIDE'
+			}
+			
+		}
+
+		// expect
+		fail();
+	})
+
+})
+
+// test 4
+describe('tester un reducer', () => {
+	it('en lui fournissant un state et une action', ()=> {
+		const reducer = (state, action) => {
+			switch (action.type){
+				case 'AJOUTER_MESSAGE':
+					return [...state, action.message];
+				default:
+					return state;
+			}
+		}
+		fail();
+	})
+})
+
+// test 5
+describe('Redux suscribe', () => {
+	it('on peut enregistrer un listener sur le store pour être notifier de ses mise a jour', done => {
 		const reducer = function(state, action){
 			switch(action.type){
 				case 'MODIFIER_STORE':
@@ -52,15 +92,17 @@ describe("Redux suscribe", () => {
 	})
 })
 
-describe("Redux combine reducers", () => {
 
-	it("On combine deux reducers et on obtient un store avec un état combiné", function(){
+// test 6
+describe('Redux combine reducers', () => {
 
+	it('On combine deux reducers et on obtient un store avec un état combiné', function(){
 		// creer deux reducers correspondants aux actions
 
 		// les combiner
 
 		const store = createStore(rootReducer);
+		expect(store.getState()).to.eql({messages: [], users: []});
 		store.dispatch({type: 'ADD_MESSAGE', message: 'nouveau message'});
 		store.dispatch({type: 'ADD_USER', user: 'nouvel utilisateur'});
 		expect(store.getState()).to.eql({messages: ['nouveau message'], users: ['nouvel utilisateur']});
@@ -68,8 +110,10 @@ describe("Redux combine reducers", () => {
 
 });
 
-describe("Redux bindActionsCreators", () => {
-	it("permet d'appeler un action creator qui s'auto dispatch", done => {
+
+// test 7
+describe('Redux bindActionsCreators', () => {
+	it('permet d\'appeler un action creator qui s\'auto dispatch', done => {
 		const reducer = function(state, action){
 			switch(action.type){
 				case 'MODIFIER_STORE':
@@ -101,8 +145,9 @@ describe("Redux bindActionsCreators", () => {
 	})
 });
 
-describe("Redux applyMiddleware", () => {
-	it("wrapper la methode dispatch avec un logger", done => {
+// test 8
+describe('Redux applyMiddleware', () => {
+	it('wrapper la methode dispatch avec un logger', done => {
 
 		const reducer = (state, action) => {
 			switch(action.type){
@@ -113,7 +158,7 @@ describe("Redux applyMiddleware", () => {
 			}
 		}
 
-		// creer un looger ({ getState, dispatch }) => next => action : result
+		// creer un logger ({ getState, dispatch }) => next => action : result
 
 		
 
@@ -130,34 +175,39 @@ describe("Redux applyMiddleware", () => {
 		store.dispatch({type: 'MODIFIER_STORE', valeur: 'nouvelle valeur'});
 	});
 
-	it("utiliser redux thunk", done => {
-		const reducer = (state = "", action) => {
+	it('utiliser redux thunk', done => {
+		const reducer = (state = '', action) => {
 			switch(action.type){
 				case 'DEBUT_ASYNC':
-					return "debut du traitement";
+					return 'debut du traitement';
 				case 'FIN_ASYNC':
-					return "traitement fini";
+					return 'traitement fini';
 				default:
 					return state;
 			}
 		}
 
-		var debutTraitement = () => {
+		const debutTraitement = () => {
 			return {
 				type: 'DEBUT_ASYNC'
 			}
 		}
 
-		var finTraitement = () => {
+		const finTraitement = () => {
 			return {
 				type: 'FIN_ASYNC'
 			}
 		}
 
+
 		// creer un store avec thunk + logger
 
-		expect(store.getState()).to.eql("");
 
+		
+		
+		
 		// dispatch de l'action
+
+		expect(store.getState()).to.eql('debut du traitement');
 	})
 })
